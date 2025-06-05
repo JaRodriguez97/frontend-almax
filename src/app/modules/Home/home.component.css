@@ -1,0 +1,357 @@
+/* BANER */
+:host {
+}
+.slider .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide .right-info::before,
+.slide .left-info::after {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  z-index: 0;
+}
+
+.slide .left-info::after {
+  bottom: -100px;
+  left: -100px;
+  background: var(--colorPrincipalOpacity);
+  box-shadow: var(--boxShadowGradient);
+
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    left: -100px;
+    bottom: -100px;
+    transform: rotate(0deg);
+  }
+  25% {
+    left: calc(50vw - 250px);
+    bottom: 0;
+  }
+  50% {
+    left: calc(50vw - 250px);
+    bottom: 60vh;
+  }
+  75% {
+    left: -100px;
+    bottom: 60vh;
+  }
+  100% {
+    left: -100px;
+    bottom: -100px;
+    transform: rotate(360deg);
+  }
+}
+
+.slide .right-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transform: translateX(200%);
+  transition: 500ms ease;
+  --img-home: url("../../../assets/images/home/home03.jpg");
+}
+
+.slide .right-info::before {
+  border-radius: 50%;
+  top: -100px;
+  right: -100px;
+  background: var(--backgroundGradient);
+  box-shadow: var(--boxShadowGradient);
+  background-image: var(--img-home);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  animation: float 10s linear infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0svh);
+  }
+  50% {
+    transform: translateY(50svh);
+  }
+  100% {
+    transform: translateY(0svh);
+  }
+}
+
+.slide .left-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  transform: translateX(-200%);
+  transition: 0;
+  transition: 500ms ease;
+}
+
+.slide.active .left-info {
+  transform: translateX(0);
+  z-index: 1;
+  transition: 500ms ease;
+}
+
+.left-info .penetrate-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--colorPrincipalOpacity),
+    transparent,
+    var(--colorPrincipalOpacity)
+  );
+  backdrop-filter: blur(30px);
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  mask: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+  mask-clip: text, padding-box;
+  mask-composite: xor;
+  -webkit-mask: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+  -webkit-mask-clip: text, padding-box;
+  -webkit-mask-composite: xor;
+}
+
+.right-info h1,
+.penetrate-blur h1 {
+  font-size: 10vw;
+  color: #000;
+  font-weight: bolder;
+  margin-inline: 13px;
+}
+
+.penetrate-blur h1 {
+  text-shadow: 0 0 20px var(--colorPrincipal);
+
+  -webkit-text-stroke: 2px var(--colorPrincipal);
+}
+
+.left-info .content {
+  z-index: 2;
+  position: absolute;
+  bottom: 5%;
+  left: 10%;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.content h3 {
+  font-size: 20px;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+.content p {
+  font-size: 16px;
+  margin-right: 15px;
+  text-wrap: balance;
+}
+
+.content a.btn {
+  padding: 13px 28px;
+  width: fit-content;
+  left: 0;
+  right: 0;
+  position: relative;
+  background: #000;
+  color: #ddd;
+}
+
+.content a.btn:hover {
+  background: transparent;
+  color: #000;
+  font-size: 20px;
+  letter-spacing: 1.2px;
+}
+
+.slide.active .right-info {
+  transform: translateX(0);
+  z-index: 1;
+  transition: 500ms ease;
+}
+
+.right-info h2 {
+  position: absolute;
+  font-size: 30px;
+  line-height: 55px;
+  color: #000;
+  text-shadow: 0 0 10px #fff5;
+  transform: translateY(150%);
+  margin-left: 13px;
+  text-transform: capitalize;
+}
+
+.navigation {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  z-index: 9;
+}
+
+.navigation span {
+  display: inline-flex;
+  width: 50px;
+  height: 50px;
+  margin-inline: 10px;
+}
+
+/* !!! Responsive height !!! */
+@media (max-height: 600px) {
+  .penetrate-blur h1 {
+    margin-bottom: 23vh;
+  }
+}
+
+/* !!! Responsive width !!! */
+@media (max-width: 1024px) {
+  .right-info h1,
+  .penetrate-blur h1 {
+    font-size: 8vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .right-info h2 {
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  .content p {
+    font-size: 14px;
+    text-wrap: pretty;
+  }
+
+  .penetrate-blur h1 {
+    margin-bottom: 13vh;
+  }
+
+  .navigation {
+    bottom: 10%;
+  }
+}
+
+@media (max-width: 600px) {
+  .slider .slide {
+    display: flex;
+    flex-direction: column;
+    height: 100svh;
+  }
+
+  .slide .left-info {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 35%;
+    transform: translateY(-90vh);
+  }
+
+  .slide.active .left-info {
+    transform: translateY(0);
+    z-index: 2;
+  }
+
+  .slide .right-info {
+    position: relative;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 65%;
+    transform: translateY(200%);
+  }
+
+  .slide.active .right-info {
+    transform: translateX(0);
+    transition: 500ms ease;
+  }
+
+  .slide .right-info::before {
+    top: 100px;
+  }
+
+  .right-info h1,
+  .penetrate-blur h1 {
+    font-size: 15vw;
+  }
+
+  .slide .right-info::before {
+    z-index: -2;
+  }
+
+  .penetrate-blur h1 {
+    margin-bottom: 2vh;
+  }
+
+  .left-info .penetrate-blur {
+    justify-content: flex-start;
+    align-items: end;
+  }
+
+  .slide .right-info {
+    align-items: baseline;
+    justify-content: right;
+  }
+
+  .right-info h2 {
+    font-size: 25px;
+    line-height: 60px;
+    margin-inline: 20px;
+  }
+
+  .left-info .content {
+    left: 5vw;
+    width: 90vw;
+    bottom: -50vh;
+  }
+
+  @keyframes rotate {
+    0% {
+      left: -100px;
+      bottom: 40vh;
+      transform: rotate(0deg);
+    }
+    50% {
+      bottom: -100vh;
+    }
+    100% {
+      left: -100px;
+      bottom: 40vh;
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .slide .right-info::before,
+  .slide .left-info::after {
+    width: 250px;
+    height: 250px;
+  }
+
+  .right-info h2 {
+    font-size: 20px;
+    line-height: 50px;
+    text-align: right;
+  }
+}

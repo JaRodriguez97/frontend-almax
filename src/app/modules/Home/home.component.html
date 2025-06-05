@@ -1,0 +1,39 @@
+<!-- <section class="banner" *ngIf="publicService.imgLogoLoaded"> -->
+<section class="banner">
+  <main class="slider">
+    <section
+      *ngFor="let s of sections; let i = index"
+      [ngClass]="{ slide: true, active: s.active }"
+    >
+      <article [ngClass]="{ 'left-info': true }">
+        <div class="penetrate-blur">
+          <h1>{{ s.h1.split(" ")[0] }}</h1>
+        </div>
+        <div class="content">
+          <h3>{{ s.h3 }}</h3>
+          <p>
+            {{ s.p }}
+          </p>
+          <a [routerLink]="'/' + s.page" class="btn">Más Detalles</a>
+        </div>
+      </article>
+
+      <article
+        [ngClass]="{ 'right-info': true }"
+        style="--img-home: url('../../../assets/images/home/home0{{i + 1}}.jpg')"
+      >
+        <h1 class="background-gradient">{{ s.h1.split(" ")[1] }}</h1>
+        <h2>{{ s.h2 }}</h2>
+      </article>
+    </section>
+  </main>
+
+  <div class="navigation">
+    <span class="prev-btn btn" (click)="prevBtn()">
+      <fa-icon [icon]="faChevronLeft" aria-hidden="true"></fa-icon>
+    </span>
+    <span class="next-btn btn" (click)="nextBtn()">
+      <fa-icon [icon]="faChevronRight" aria-hidden="true"></fa-icon>
+    </span>
+  </div>
+</section>
