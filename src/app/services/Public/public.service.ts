@@ -1,7 +1,7 @@
 // import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import { environment } from '@env/environment';
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID, /* Renderer2 */ } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID /* Renderer2 */ } from '@angular/core';
 import {
   faFacebookF,
   faInstagram,
@@ -34,30 +34,29 @@ export class PublicService {
     icon: typeof faTiktok;
   }> = [
     {
-      href: 'https://www.instagram.com/',
+      href: 'https://goo.su/5sU2uI',
       title: 'string',
       icon: faInstagram,
     },
     {
-      href: 'https://www.facebook.com/',
+      href: 'https://goo.su/z3wC2x',
       title: '',
       icon: faFacebookF,
     },
     {
-      href: 'https://www.tiktok.com/',
+      href: 'https://www.tiktok.com/@almax938?_t=ZS-8wvE8JrxEe7&_r=1',
       title: 'string',
       icon: faTiktok,
     },
     {
-      href: 'https://wa.me/573',
+      href: 'https://wa.me/573242105023',
       title: 'string',
       icon: faWhatsapp,
     },
   ];
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    // private http: HttpClient
+    @Inject(PLATFORM_ID) private platformId: Object // private http: HttpClient
   ) {
     // Verifica si la aplicación se está ejecutando en un navegador
     this.headerLoad = false;
