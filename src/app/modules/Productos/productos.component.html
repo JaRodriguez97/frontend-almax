@@ -1,0 +1,45 @@
+<section *ngIf="publicService.imgLogoLoaded" class="banner" id="banner">
+  <header class="content">
+    <h2>Nuestro productos</h2>
+    <a class="btn" href="productos#post0">Iniciar Recorrido</a>
+    <span
+      >Última Actualización: <br />
+      20/Junio/2025 01:16 PM (-5 GTM)</span
+    >
+  </header>
+</section>
+
+<section
+  *ngFor="let s of sections; let i = index"
+  class="productos-post banner"
+  [id]="'post' + i"
+>
+  <article class="post" *ngIf="publicService.imgLogoLoaded">
+    <!-- <img [src]="s.img" alt="" width="100%" height="100%" /> -->
+
+    <a
+      [href]="i == 0 ? 'productos#banner' : 'productos#post' + (i - 1)"
+      class="btn prev"
+    >
+      Volver
+    </a>
+    <a
+      [href]="
+        i == sections.length - 1
+          ? 'productos#banner'
+          : 'productos#post' + (i + 1)
+      "
+      class="btn next"
+    >
+      Siguiente
+    </a>
+
+    <p class="post-title">{{ s.descripcion }}</p>
+
+    <!-- <address class="post-date">
+      <span>{{ s.day }}</span>
+      <span>{{ s.month }}</span>
+      <span>{{ s.year }}</span>
+    </address> -->
+  </article>
+</section>

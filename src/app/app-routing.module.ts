@@ -7,7 +7,20 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/Home/home.module').then((m) => m.HomeModule),
   },
-  { path: 'Tendencias', loadChildren: () => import('./modules/Tendencias/tendencias.module').then(m => m.TendenciasModule) },
+  {
+    path: 'tendencias',
+    loadChildren: () =>
+      import('./modules/Tendencias/tendencias.module').then(
+        (m) => m.TendenciasModule
+      ),
+  },
+  {
+    path: 'productos',
+    loadChildren: () =>
+      import('./modules/Productos/productos.module').then(
+        (m) => m.ProductosModule
+      ),
+  },
   // {
   //   path: 'blog',
   //   loadChildren: () =>

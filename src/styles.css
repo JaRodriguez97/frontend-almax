@@ -7,7 +7,7 @@
   --colorSecundarioOpacity: #8707cd88;
 
   --gradientPrincipal: var(--colorPrincipalOpacity);
-  --gradientSecundario:  var(--colorSecundarioOpacity);
+  --gradientSecundario: var(--colorSecundarioOpacity);
   --backgroundGradient: linear-gradient(
     to bottom,
     var(--gradientPrincipal),
@@ -134,6 +134,18 @@ li {
 
 span {
   color: var(--colorPrincipal);
+}
+
+/* animación para el componente tendencias */
+@keyframes animate {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(var(--x), var(--y));
+  }
 }
 
 /* 

@@ -1,1 +1,42 @@
-<p>tendencias works!</p>
+<section id="lab">
+  <div class="circle" (click)="roundParticles()"></div>
+  <svg>
+    <filter id="gooey">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+      <feColorMatrix
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 50 -10"
+      />
+    </filter>
+  </svg>
+</section>
+
+<section class="tendencias">
+  <div class="title">
+    <h2>Tendencias en Productos para Uñas</h2>
+    <p>
+      Mantente a la vanguardia con los insumos más buscados del año: acrílicos
+      de última generación, pinceles profesionales, decoraciones innovadoras y
+      tonos tendencia. En ALMAX NAILS ofrecemos lo más nuevo en productos para
+      uñas, ideales para técnicas como baby boomer, esmaltado semipermanente y
+      más.
+    </p>
+  </div>
+
+  <ul>
+    <li *ngFor="let s of tendencias">
+      <img
+        [src]="s.src"
+        [alt]="s.alt"
+        [title]="s.title"
+        loading="lazy"
+        width="340"
+        height="200"
+      />
+      <h3>{{ s.titulo }}</h3>
+      <!-- <p [innerHTML]="s.parrafo"></p> -->
+    </li>
+  </ul>
+</section>

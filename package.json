@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "c": "ng g c components/contacto --skip-import",
-    "m": "ng g m modules/Tendencias/Tendencias -m=app --route Tendencias --flat",
+    "m": "ng g m modules/Productos/Productos -m=app --route productos --flat",
     "dev": "ng s -o",
     "start": "ng serve",
     "build": "ng build",
