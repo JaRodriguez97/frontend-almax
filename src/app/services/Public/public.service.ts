@@ -49,7 +49,7 @@ export class PublicService {
       icon: faTiktok,
     },
     {
-      href: 'https://wa.me/573242105023',
+      href: 'https://wa.me/c/573242105023',
       title: 'string',
       icon: faWhatsapp,
     },
