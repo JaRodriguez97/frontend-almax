@@ -39,17 +39,9 @@ export class HomeComponent {
       page: 'productos',
     },
     {
-      h1: 'Estilo Único',
-      h2: 'Inspírate y Crea sin Límites tus diseños',
-      h3: '03. Diseños que hablan',
-      p: 'Déjate llevar por tu imaginación y sorprende con diseños para uñas que rompen esquemas. ALMAX NAILS te acompaña en cada paso para que tu creatividad no tenga límites y logres resultados extraordinarios.',
-      active: false,
-      page: 'inspiracion',
-    },
-    {
       h1: 'Uñas Perfectas',
       h2: 'De la idea a la realidad',
-      h3: '04. Procesos impecables',
+      h3: '03. Procesos impecables',
       p: 'Cada diseño es un proceso: desde la selección de insumos hasta la aplicación precisa. Con ALMAX NAILS, garantiza resultados impecables con nuestros kits profesionales y asesoría experta en cada paso del camino.',
       active: false,
       page: 'transformacion',
@@ -57,7 +49,7 @@ export class HomeComponent {
     {
       h1: 'Reseñas Amorosas',
       h2: 'Lo que dicen de ALMAX NAILS',
-      h3: '05. Voces que inspiran',
+      h3: '04. Voces que inspiran',
       p: 'Conoce la experiencia de quienes ya transformaron sus diseños con nuestros productos. Opiniones reales de artistas de uñas que confían en ALMAX NAILS para llevar su creatividad al siguiente nivel.',
       active: false,
       page: 'testimonios',
@@ -65,16 +57,14 @@ export class HomeComponent {
     {
       h1: 'Conecta Ideas',
       h2: 'Aprende y Evoluciona',
-      h3: '06. Juntos marcamos la diferencia',
+      h3: '05. Juntos marcamos la diferencia',
       p: 'Sé parte de una comunidad apasionada por las uñas en Colombia. Comparte tus creaciones, aprende de los mejores y mantente siempre a la vanguardia. ALMAX NAILS impulsa tu talento y te conecta con oportunidades únicas.',
       active: false,
       page: 'comunidad',
     },
   ];
 
-  constructor(public publicService: PublicService) {
-    console.log(this.sections.length);
-  }
+  constructor(public publicService: PublicService) {}
 
   prevBtn() {
     let indexSection = this.sections.findIndex((s) => s.active),

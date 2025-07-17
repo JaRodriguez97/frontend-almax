@@ -1,0 +1,130 @@
+section {
+  height: 110%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: relative;
+  background: #111;
+  padding: 8% 0 300px 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+section::before {
+  content: "Proyectos";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16em;
+  font-weight: 700;
+  color: #111;
+  text-shadow: var(--boxShadowGradient);
+}
+
+article {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 5%;
+}
+
+article:nth-child(even) .container {
+  flex-direction: row-reverse;
+}
+
+article .box {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+article h2 {
+  margin-left: 200px;
+  font-size: 4em;
+  color: #fff;
+  margin-bottom: 20px;
+  transition: all 100ms;
+}
+
+article:nth-child(even) h2 {
+  margin-left: 0;
+  margin-right: 200px;
+}
+
+article .container {
+  position: relative;
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+article .container .imgBx {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  overflow: hidden;
+  box-shadow: 0 25px 35px rgb(0 0 0 / 10%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
+article .container .imgBx img {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  /* height: 100%; */
+  object-fit: cover;
+}
+
+article .container .content {
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* margin: 200px 0 40px 0; */
+  padding: 40px;
+  background: #333;
+  z-index: 1;
+  max-width: 400px;
+  color: #fff;
+  box-shadow: 0 25px 35px rgb(0 0 0 / 10%);
+  border-bottom: solid 10px var(--colorPrincipal);
+}
+
+article:nth-child(even) .container .content {
+  left: 0;
+}
+
+@media (max-width: 1024px) {
+  section::before {
+    font-size: 20vw;
+  }
+
+  /* article {
+    padding-top: 30vh;
+  } */
+
+  article .container {
+    width: 90vw;
+  }
+
+  article h2 {
+    font-size: 8vw;
+  }
+}
+
+@media (max-width: 500px) {
+  section {
+    padding: 35vh 0;
+  }
+}

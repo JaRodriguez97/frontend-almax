@@ -1,0 +1,16 @@
+<!-- <section class="banner"> -->
+<section class="section">
+  <article *ngFor="let a of articles">
+    <div class="box">
+      <h2>{{ "Transformación: " + a.h2 }}</h2>
+
+      <div class="container">
+        <div class="imgBx" [style]="a.img"></div>
+
+        <div class="content">
+          <p>{{ a.p }}</p>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>

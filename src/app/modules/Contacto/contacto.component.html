@@ -1,0 +1,25 @@
+<section class="contacto">
+  <a
+    *ngFor="let R of arrayRedes"
+    [ngStyle]="{ '--color': R.color }"
+    [href]="R.href"
+    target="_blank"
+  >
+    <article class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" [attr.viewBox]="R.viewBox">
+        <path [attr.d]="R.path"></path>
+      </svg>
+
+      <h2 style="--characters: {{ R.characters }}ch;">
+        {{ R.h2 }}
+      </h2>
+    </article>
+
+    <img
+      src="../../../assets/imagenes/contact/{{ R.img }}"
+      alt="QR-Code"
+      width="200"
+      height="200"
+    />
+  </a>
+</section>

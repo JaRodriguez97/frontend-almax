@@ -111,34 +111,39 @@ export class TendenciasComponent implements OnInit, OnDestroy {
   }
 
   roundParticles() {
-    for (let i = 0; i < 50; i++) {
-      let particles = this.document.createElement('i');
-      let section = this.document.getElementById('lab');
+    if (this.publicService.isBrowser) {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
-      let randomX = (Math.random() - 0.5) * innerWidth;
-      let randomY = (Math.random() - 0.5) * innerHeight;
+      for (let i = 0; i < 50; i++) {
+        let particles = this.document.createElement('i');
+        let section = this.document.getElementById('lab');
 
-      let randomSize = Math.random() * 60 + 10;
+        let randomX = (Math.random() - 0.5) * width;
+        let randomY = (Math.random() - 0.5) * height;
 
-      let duration = Math.random() * 30 + 5;
+        let randomSize = Math.random() * 60 + 10;
 
-      let deg = Math.random() * 360 + 1;
+        let duration = Math.random() * 30 + 5;
 
-      particles.style.setProperty('--x', randomX + 'px');
-      particles.style.setProperty('--y', randomY + 'px');
+        let deg = Math.random() * 360 + 1;
 
-      particles.style.width = randomSize + 'px';
-      particles.style.height = randomSize + 'px';
+        particles.style.setProperty('--x', randomX + 'px');
+        particles.style.setProperty('--y', randomY + 'px');
 
-      particles.style.animation = `animate ${duration}s ease forwards`;
+        particles.style.width = randomSize + 'px';
+        particles.style.height = randomSize + 'px';
 
-      particles.style.background = `linear-gradient(${deg}deg, #f00, var(--colorPrincipal))`;
+        particles.style.animation = `animate ${duration}s ease forwards`;
 
-      particles.classList.add('particles');
+        particles.style.background = `linear-gradient(${deg}deg, #f00, var(--colorPrincipal))`;
 
-      section!.appendChild(particles);
+        particles.classList.add('particles');
 
-      setTimeout(() => particles.remove(), 33000);
+        section!.appendChild(particles);
+
+        setTimeout(() => particles.remove(), 33000);
+      }
     }
   }
 }

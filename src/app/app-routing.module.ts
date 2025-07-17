@@ -21,32 +21,27 @@ const routes: Routes = [
         (m) => m.ProductosModule
       ),
   },
-  // {
-  //   path: 'blog',
-  //   loadChildren: () =>
-  //     import('./modules/Blog/blog.module').then((m) => m.BlogModule),
-  // },
-  // {
-  //   path: 'proyectos',
-  //   loadChildren: () =>
-  //     import('./modules/Proyectos/proyectos.module').then(
-  //       (m) => m.ProyectosModule
-  //     ),
-  // },
-  // {
-  //   path: 'servicios',
-  //   loadChildren: () =>
-  //     import('./modules/Servicios/servicios.module').then(
-  //       (m) => m.ServiciosModule
-  //     ),
-  // },
-  // {
-  //   path: 'contacto',
-  //   loadChildren: () =>
-  //     import('./modules/Contacto/contacto.module').then(
-  //       (m) => m.ContactoModule
-  //     ),
-  // },
+  {
+    path: 'transformacion',
+    loadChildren: () =>
+      import('./modules/Proyectos/proyectos.module').then(
+        (m) => m.ProyectosModule
+      ),
+  },
+  {
+    path: 'testimonios',
+    loadChildren: () =>
+      import('./modules/Servicios/servicios.module').then(
+        (m) => m.ServiciosModule
+      ),
+  },
+  {
+    path: 'comunidad',
+    loadChildren: () =>
+      import('./modules/Contacto/contacto.module').then(
+        (m) => m.ContactoModule
+      ),
+  },
   {
     path: '**',
     redirectTo: '',

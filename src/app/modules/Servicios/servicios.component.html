@@ -1,0 +1,47 @@
+<section id="lab">
+  <div class="circle" (click)="roundParticles()"></div>
+  <svg>
+    <filter id="gooey">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+      <feColorMatrix
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 50 -10"
+      />
+    </filter>
+  </svg>
+</section>
+
+<section class="testimonios">
+  <div class="title">
+    <h2>Lo que dicen nuestras clientas</h2>
+    <p>
+      Escucha directamente de nuestras clientas cómo ALMAX NAILS transformó sus diseños y su negocio.
+    </p>
+  </div>
+
+  <div class="testimonios-grid">
+    <div class="video-card" *ngFor="let testimonial of testimonios">
+      <div class="video-container">
+        <video 
+          [src]="testimonial.videoUrl" 
+          [poster]="testimonial.thumbnail"
+          controls
+          preload="metadata"
+          loading="lazy">
+          Tu navegador no soporta video HTML5.
+        </video>
+        <div class="play-overlay" *ngIf="!testimonial.isPlaying">
+          <fa-icon [icon]="faPlay" class="play-icon"></fa-icon>
+        </div>
+      </div>
+      
+      <div class="video-info">
+        <h3>{{ testimonial.clientName }}</h3>
+        <p class="location">{{ testimonial.location }}</p>
+        <p class="preview-text">{{ testimonial.previewText }}</p>
+      </div>
+    </div>
+  </div>
+</section>
