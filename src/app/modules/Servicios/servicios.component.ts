@@ -1,7 +1,30 @@
 import { PublicService } from '@app/services/Public/public.service';
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlay,
+  faStar,
+  faQuoteLeft,
+  faHeart,
+  faCrown,
+  faTrophy,
+  faGem,
+} from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+
+interface TestimonialData {
+  clientName: string;
+  location: string;
+  videoUrl?: string;
+  thumbnail?: string;
+  clientImage: string;
+  text: string;
+  rating: number;
+  type: 'video' | 'image' | 'text';
+  image?: string;
+  tags?: string[];
+  profession?: string;
+}
 
 @Component({
   selector: 'app-servicios',
@@ -10,64 +33,126 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 })
 export class ServiciosComponent implements OnInit, OnDestroy {
   private animationFrameId: number | null = null;
+
+  // Icons
   faPlay = faPlay;
-  
-  public testimonios: Array<{
-    clientName: string;
-    location: string;
-    videoUrl: string;
-    thumbnail: string;
-    previewText: string;
-    isPlaying: boolean;
-  }> = [
-    {
-      clientName: 'María González',
-      location: 'Bogotá, Colombia',
-      videoUrl: 'assets/videos/testimonial-maria.mp4',
-      thumbnail: 'assets/images/testimonials/maria-thumbnail.jpg',
-      previewText: 'ALMAX NAILS cambió completamente mi técnica de uñas. Ahora mis clientas quedan fascinadas con los resultados.',
-      isPlaying: false
-    },
+  faStar = faStar;
+  faQuoteLeft = faQuoteLeft;
+  faWhatsapp = faWhatsapp;
+  faHeart = faHeart;
+  faCrown = faCrown;
+  faTrophy = faTrophy;
+  faGem = faGem;
+
+  // Testimonio destacado principal
+  featuredTestimonial: TestimonialData = {
+    clientName: 'Isabella Torres',
+    location: 'Bucaramanga, Colombia',
+    videoUrl: 'assets/videos/testimonial-isabella-featured.mp4',
+    thumbnail: 'assets/images/testimonials/isabella-featured-thumb.jpg',
+    clientImage: 'assets/images/clients/isabella-avatar.jpg',
+    text: 'ALMAX NAILS transformó completamente mi negocio. En 6 meses mis ingresos se triplicaron y ahora tengo una clientela fija de más de 200 personas. La calidad de los productos es excepcional y mis clientas siempre salen fascinadas.',
+    rating: 5,
+    type: 'video',
+  };
+
+  // Testimonio de texto destacado
+  highlightedTestimonial: TestimonialData = {
+    clientName: 'María Fernanda Gómez',
+    location: 'Medellín, Colombia',
+    clientImage: 'assets/images/clients/maria-avatar.jpg',
+    text: 'Después de 15 años como nail artist, puedo decir que ALMAX NAILS es la mejor inversión que he hecho. La durabilidad y acabado es incomparable.',
+    rating: 5,
+    type: 'text',
+    profession: 'Nail Artist Profesional',
+  };
+
+  // Antes y después
+  beforeAfter = {
+    before: 'assets/images/before-after/before-nails.jpg',
+    after: 'assets/images/before-after/after-nails.jpg',
+    description: 'Transformación completa con técnicas ALMAX NAILS',
+  };
+
+  // Testimonios regulares
+  regularTestimonials: TestimonialData[] = [
     {
       clientName: 'Ana Rodríguez',
-      location: 'Medellín, Colombia',
-      videoUrl: 'assets/videos/testimonial-ana.mp4',
-      thumbnail: 'assets/images/testimonials/ana-thumbnail.jpg',
-      previewText: 'Los productos son increíbles, la calidad es superior a todo lo que había usado antes.',
-      isPlaying: false
-    },
-    {
-      clientName: 'Sofía Martínez',
       location: 'Cali, Colombia',
-      videoUrl: 'assets/videos/testimonial-sofia.mp4',
-      thumbnail: 'assets/images/testimonials/sofia-thumbnail.jpg',
-      previewText: 'Mis uñas lucen profesionales y duraderas. Definitivamente recomiendo ALMAX NAILS.',
-      isPlaying: false
+      videoUrl: 'assets/videos/testimonial-ana.mp4',
+      thumbnail: 'assets/images/testimonials/ana-thumb.jpg',
+      clientImage: 'assets/images/clients/ana-avatar.jpg',
+      text: 'Los productos son increíbles. Mis clientas me preguntan constantemente qué uso porque el acabado es perfecto.',
+      rating: 5,
+      type: 'video',
+      tags: ['Calidad', 'Profesional'],
     },
     {
       clientName: 'Carmen López',
       location: 'Barranquilla, Colombia',
-      videoUrl: 'assets/videos/testimonial-carmen.mp4',
-      thumbnail: 'assets/images/testimonials/carmen-thumbnail.jpg',
-      previewText: 'La diferencia es notoria desde el primer uso. Calidad y elegancia en cada aplicación.',
-      isPlaying: false
+      clientImage: 'assets/images/clients/carmen-avatar.jpg',
+      image: 'assets/images/testimonials/carmen-work.jpg',
+      text: 'Mi negocio creció 300% en un año. ALMAX NAILS me dio la confianza para cobrar más y ofrecer mejor calidad.',
+      rating: 5,
+      type: 'image',
+      tags: ['Negocio', 'Crecimiento'],
     },
     {
-      clientName: 'Isabella Torres',
-      location: 'Bucaramanga, Colombia',
-      videoUrl: 'assets/videos/testimonial-isabella.mp4',
-      thumbnail: 'assets/images/testimonials/isabella-thumbnail.jpg',
-      previewText: 'Como nail artist profesional, puedo decir que ALMAX NAILS es la mejor opción del mercado.',
-      isPlaying: false
+      clientName: 'Sofía Martínez',
+      location: 'Medellín, Colombia',
+      videoUrl: 'assets/videos/testimonial-sofia.mp4',
+      thumbnail: 'assets/images/testimonials/sofia-thumb.jpg',
+      clientImage: 'assets/images/clients/sofia-avatar.jpg',
+      text: 'La durabilidad es impresionante. Mis uñas lucen perfectas por semanas, sin descascararse ni perder brillo.',
+      rating: 5,
+      type: 'video',
+      tags: ['Durabilidad', 'Brillo'],
     },
     {
       clientName: 'Valentina Herrera',
       location: 'Pereira, Colombia',
-      videoUrl: 'assets/videos/testimonial-valentina.mp4',
-      thumbnail: 'assets/images/testimonials/valentina-thumbnail.jpg',
-      previewText: 'Mis clientas siempre me preguntan qué productos uso. La respuesta siempre es ALMAX NAILS.',
-      isPlaying: false
-    }
+      clientImage: 'assets/images/clients/valentina-avatar.jpg',
+      image: 'assets/images/testimonials/valentina-nails.jpg',
+      text: 'Como instructora de belleza, recomiendo ALMAX NAILS a todas mis estudiantes. Es sinónimo de excelencia.',
+      rating: 5,
+      type: 'image',
+      tags: ['Educación', 'Recomendación'],
+    },
+    {
+      clientName: 'Camila Vásquez',
+      location: 'Bogotá, Colombia',
+      videoUrl: 'assets/videos/testimonial-camila.mp4',
+      thumbnail: 'assets/images/testimonials/camila-thumb.jpg',
+      clientImage: 'assets/images/clients/camila-avatar.jpg',
+      text: 'Abrí mi segundo salón gracias a los resultados con ALMAX NAILS. Mis clientas están encantadas.',
+      rating: 5,
+      type: 'video',
+      tags: ['Expansión', 'Éxito'],
+    },
+  ];
+
+  // Estadísticas detalladas
+  detailedStats = [
+    {
+      icon: faHeart,
+      value: '98%',
+      label: 'Satisfacción',
+    },
+    {
+      icon: faCrown,
+      value: '500+',
+      label: 'Clientas',
+    },
+    {
+      icon: faTrophy,
+      value: '15',
+      label: 'Premios',
+    },
+    {
+      icon: faGem,
+      value: '5⭐',
+      label: 'Calificación',
+    },
   ];
 
   constructor(
@@ -76,32 +161,8 @@ export class ServiciosComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.roundParticles();
-
-    this.delayAnimation();
-
     this.detectScroll();
-  }
-
-  delayAnimation() {
-    if (this.publicService.isBrowser) {
-      this.animationFrameId = requestAnimationFrame(() => {
-        setTimeout(() => {
-          this.roundParticles();
-          this.delayAnimation();
-        }, 10000);
-      });
-    }
-  }
-
-  detectScroll() {
-    let testimonios = this.document.querySelector('.testimonios');
-
-    testimonios?.addEventListener('scroll', () => {
-      let scrollPos = testimonios?.scrollTop!;
-
-      this.publicService.sticky = scrollPos > 50;
-    });
+    this.initAOS();
   }
 
   ngOnDestroy(): void {
@@ -109,40 +170,46 @@ export class ServiciosComponent implements OnInit, OnDestroy {
       cancelAnimationFrame(this.animationFrameId);
   }
 
-  roundParticles() {
+  initAOS(): void {
     if (this.publicService.isBrowser) {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      // Simulación de AOS (Animate On Scroll)
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('aos-animate');
+          }
+        });
+      });
 
-      for (let i = 0; i < 50; i++) {
-        let particles = this.document.createElement('i');
-        let section = this.document.getElementById('lab');
-
-        let randomX = (Math.random() - 0.5) * width;
-        let randomY = (Math.random() - 0.5) * height;
-
-        let randomSize = Math.random() * 60 + 10;
-
-        let duration = Math.random() * 10 + 5;
-
-        let deg = Math.random() * 360 + 1;
-
-        particles.style.setProperty('--x', randomX + 'px');
-        particles.style.setProperty('--y', randomY + 'px');
-
-        particles.style.width = randomSize + 'px';
-        particles.style.height = randomSize + 'px';
-
-        particles.style.animation = `animate ${duration}s ease forwards`;
-
-        particles.style.background = `linear-gradient(${deg}deg, #f00, var(--colorPrincipal))`;
-
-        particles.classList.add('particles');
-
-        section!.appendChild(particles);
-
-        setTimeout(() => particles.remove(), 11000);
-      }
+      // Observar todos los elementos con data-aos
+      setTimeout(() => {
+        const elements = this.document.querySelectorAll('[data-aos]');
+        elements.forEach((el) => observer.observe(el));
+      }, 100);
     }
+  }
+
+  getStarArray(rating: number): number[] {
+    return Array(rating).fill(0);
+  }
+
+  onVideoLoadStart(event: Event): void {
+    const video = event.target as HTMLVideoElement;
+    video.classList.add('loading');
+  }
+
+  onVideoCanPlay(event: Event): void {
+    const video = event.target as HTMLVideoElement;
+    video.classList.remove('loading');
+    video.classList.add('loaded');
+  }
+
+  detectScroll() {
+    let testimonios = this.document.querySelector('.testimonios');
+
+    testimonios?.addEventListener('scroll', () => {
+      let scrollPos = testimonios?.scrollTop!;
+      this.publicService.sticky = scrollPos > 50;
+    });
   }
 }

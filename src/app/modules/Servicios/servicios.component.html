@@ -1,46 +1,215 @@
-<section id="lab">
-  <div class="circle" (click)="roundParticles()"></div>
-  <svg>
-    <filter id="gooey">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
-      <feColorMatrix
-        values="1 0 0 0 0
-                0 1 0 0 0
-                0 0 1 0 0
-                0 0 0 50 -10"
-      />
-    </filter>
-  </svg>
-</section>
-
 <section class="testimonios">
-  <div class="title">
-    <h2>Lo que dicen nuestras clientas</h2>
-    <p>
-      Escucha directamente de nuestras clientas cómo ALMAX NAILS transformó sus diseños y su negocio.
-    </p>
-  </div>
-
-  <div class="testimonios-grid">
-    <div class="video-card" *ngFor="let testimonial of testimonios">
-      <div class="video-container">
-        <video 
-          [src]="testimonial.videoUrl" 
-          [poster]="testimonial.thumbnail"
-          controls
-          preload="metadata"
-          loading="lazy">
-          Tu navegador no soporta video HTML5.
-        </video>
-        <div class="play-overlay" *ngIf="!testimonial.isPlaying">
-          <fa-icon [icon]="faPlay" class="play-icon"></fa-icon>
+  <div class="hero-section">
+    <div class="title-container">
+      <h1 class="main-title">
+        <span class="highlight">Historias</span> que
+        <span class="gradient-text">Transforman</span>
+      </h1>
+      <p class="subtitle">
+        Descubre cómo ALMAX NAILS ha revolucionado el mundo de la belleza y los
+        negocios de nuestras clientas
+      </p>
+      <div class="stats">
+        <div class="stat">
+          <span class="number">500+</span>
+          <span class="label">Clientas felices</span>
+        </div>
+        <div class="stat">
+          <span class="number">98%</span>
+          <span class="label">Satisfacción</span>
+        </div>
+        <div class="stat">
+          <span class="number">24/7</span>
+          <span class="label">Soporte</span>
         </div>
       </div>
-      
-      <div class="video-info">
-        <h3>{{ testimonial.clientName }}</h3>
-        <p class="location">{{ testimonial.location }}</p>
-        <p class="preview-text">{{ testimonial.previewText }}</p>
+    </div>
+  </div>
+
+  <div class="testimonios-container">
+    <div class="bento-grid">
+      <!-- Testimonio principal - Video destacado -->
+      <div class="bento-item large-video" [attr.data-aos]="'fade-up'">
+        <div class="video-wrapper">
+          <video
+            [src]="featuredTestimonial.videoUrl"
+            [poster]="featuredTestimonial.thumbnail"
+            controls
+            preload="metadata"
+            loading="lazy"
+            (loadstart)="onVideoLoadStart($event)"
+            (canplay)="onVideoCanPlay($event)"
+          ></video>
+          <div class="video-overlay">
+            <fa-icon [icon]="faPlay" class="play-icon"></fa-icon>
+          </div>
+        </div>
+        <div class="content">
+          <div class="client-info">
+            <img
+              [src]="featuredTestimonial.clientImage"
+              [alt]="featuredTestimonial.clientName"
+              loading="lazy"
+              class="client-avatar"
+            />
+            <div class="client-details">
+              <h3>{{ featuredTestimonial.clientName }}</h3>
+              <p class="location">{{ featuredTestimonial.location }}</p>
+              <div class="rating">
+                <fa-icon
+                  [icon]="faStar"
+                  *ngFor="let star of [1, 2, 3, 4, 5]"
+                  class="star"
+                ></fa-icon>
+              </div>
+            </div>
+          </div>
+          <p class="testimonial-text">{{ featuredTestimonial.text }}</p>
+        </div>
+      </div>
+
+      <!-- Testimonio de texto destacado -->
+      <div
+        class="bento-item text-highlight"
+        [attr.data-aos]="'fade-up'"
+        [attr.data-aos-delay]="'100'"
+      >
+        <div class="quote-mark">
+          <fa-icon [icon]="faQuoteLeft"></fa-icon>
+        </div>
+        <p class="quote-text">{{ highlightedTestimonial.text }}</p>
+        <div class="author">
+          <img
+            [src]="highlightedTestimonial.clientImage"
+            [alt]="highlightedTestimonial.clientName"
+            loading="lazy"
+            class="author-avatar"
+          />
+          <div class="author-info">
+            <h4>{{ highlightedTestimonial.clientName }}</h4>
+            <p>{{ highlightedTestimonial.profession }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Galería de antes y después -->
+      <div
+        class="bento-item before-after"
+        [attr.data-aos]="'fade-up'"
+        [attr.data-aos-delay]="'200'"
+      >
+        <h3 class="section-title">Antes y Después</h3>
+        <div class="before-after-container">
+          <div class="image-comparison">
+            <div class="before-image">
+              <img [src]="beforeAfter.before" alt="Antes" loading="lazy" />
+              <span class="label">Antes</span>
+            </div>
+            <div class="after-image">
+              <img [src]="beforeAfter.after" alt="Después" loading="lazy" />
+              <span class="label">Después</span>
+            </div>
+          </div>
+          <p class="transformation-text">{{ beforeAfter.description }}</p>
+        </div>
+      </div>
+
+      <!-- Testimonios en cuadrícula -->
+      <div
+        class="bento-item testimonial-card"
+        *ngFor="let testimonial of regularTestimonials; let i = index"
+        [attr.data-aos]="'fade-up'"
+        [attr.data-aos-delay]="(i + 3) * 100"
+      >
+        <div class="card-content" [ngClass]="testimonial.type">
+          <!-- Tipo Video -->
+          <div class="video-container" *ngIf="testimonial.type === 'video'">
+            <video
+              [src]="testimonial.videoUrl"
+              [poster]="testimonial.thumbnail"
+              controls
+              preload="metadata"
+              loading="lazy"
+              (loadstart)="onVideoLoadStart($event)"
+              (canplay)="onVideoCanPlay($event)"
+            ></video>
+            <div class="play-overlay">
+              <fa-icon [icon]="faPlay" class="play-icon"></fa-icon>
+            </div>
+          </div>
+
+          <!-- Tipo Imagen -->
+          <div class="image-container" *ngIf="testimonial.type === 'image'">
+            <img
+              [src]="testimonial.image"
+              [alt]="testimonial.clientName"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Información del cliente -->
+          <div class="client-info">
+            <img
+              [src]="testimonial.clientImage"
+              [alt]="testimonial.clientName"
+              loading="lazy"
+              class="client-avatar"
+            />
+            <div class="client-details">
+              <h4>{{ testimonial.clientName }}</h4>
+              <p class="location">{{ testimonial.location }}</p>
+              <div class="rating">
+                <fa-icon
+                  [icon]="faStar"
+                  *ngFor="let star of getStarArray(testimonial.rating)"
+                  class="star"
+                ></fa-icon>
+              </div>
+            </div>
+          </div>
+
+          <!-- Texto del testimonio -->
+          <p class="testimonial-text">{{ testimonial.text }}</p>
+
+          <!-- Etiquetas/Tags -->
+          <div class="tags" *ngIf="testimonial.tags">
+            <span class="tag" *ngFor="let tag of testimonial.tags">{{
+              tag
+            }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección de estadísticas -->
+      <div
+        class="bento-item stats-card"
+        [attr.data-aos]="'fade-up'"
+        [attr.data-aos-delay]="'400'"
+      >
+        <h3 class="stats-title">¿Por qué nos eligen?</h3>
+        <div class="stats-grid">
+          <div class="stat-item" *ngFor="let stat of detailedStats">
+            <fa-icon [icon]="stat.icon" class="stat-icon"></fa-icon>
+            <span class="stat-number">{{ stat.value }}</span>
+            <p class="stat-label">{{ stat.label }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to action -->
+      <div
+        class="bento-item cta-card"
+        [attr.data-aos]="'fade-up'"
+        [attr.data-aos-delay]="'500'"
+      >
+        <h3 class="cta-title">¿Lista para transformar tu negocio?</h3>
+        <p class="cta-text">
+          Únete a cientos de profesionales que ya confían en ALMAX NAILS
+        </p>
+        <button class="cta-button">
+          <fa-icon [icon]="faWhatsapp"></fa-icon>
+          Contáctanos ahora
+        </button>
       </div>
     </div>
   </div>
