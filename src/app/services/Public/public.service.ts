@@ -34,6 +34,11 @@ export class PublicService {
     icon: typeof faTiktok;
   }> = [
     {
+      href: 'https://www.tiktok.com/@almax938?_t=ZS-8wvE8JrxEe7&_r=1',
+      title: 'string',
+      icon: faTiktok,
+    },
+    {
       href: 'https://goo.su/5sU2uI',
       title: 'string',
       icon: faInstagram,
@@ -42,11 +47,6 @@ export class PublicService {
       href: 'https://goo.su/z3wC2x',
       title: '',
       icon: faFacebookF,
-    },
-    {
-      href: 'https://www.tiktok.com/@almax938?_t=ZS-8wvE8JrxEe7&_r=1',
-      title: 'string',
-      icon: faTiktok,
     },
     {
       href: 'https://wa.me/c/573242105023',

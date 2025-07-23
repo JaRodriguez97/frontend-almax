@@ -85,6 +85,7 @@ header a.logo.btn:hover img {
 header .social-media {
   margin: 0 auto 0 50px;
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -94,9 +95,18 @@ header .social-media li {
   height: 40px;
 }
 
+header .social-media li:nth-child(1) {
+  width: 45px;
+  height: 45px;
+}
+
 header .social-media li a fa-icon {
   font-size: 30px;
   transition: 500ms;
+}
+
+header .social-media li:nth-child(1) a fa-icon {
+  font-size: 35px;
 }
 
 header .social-media li a:hover fa-icon {

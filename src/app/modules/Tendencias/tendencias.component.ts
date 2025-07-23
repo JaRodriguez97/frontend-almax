@@ -136,7 +136,7 @@ export class TendenciasComponent implements OnInit, OnDestroy {
 
         particles.style.animation = `animate ${duration}s ease forwards`;
 
-        particles.style.background = `linear-gradient(${deg}deg, #f00, var(--colorPrincipal))`;
+        particles.style.background = `linear-gradient(${deg}deg, white, var(--colorPrincipal))`;
 
         particles.classList.add('particles');
 

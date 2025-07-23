@@ -33,16 +33,15 @@
         <div class="video-wrapper">
           <video
             [src]="featuredTestimonial.videoUrl"
-            [poster]="featuredTestimonial.thumbnail"
             controls
             preload="metadata"
             loading="lazy"
             (loadstart)="onVideoLoadStart($event)"
             (canplay)="onVideoCanPlay($event)"
           ></video>
-          <div class="video-overlay">
+          <!-- <div class="video-overlay">
             <fa-icon [icon]="faPlay" class="play-icon"></fa-icon>
-          </div>
+          </div> -->
         </div>
         <div class="content">
           <div class="client-info">
@@ -64,7 +63,7 @@
               </div>
             </div>
           </div>
-          <p class="testimonial-text">{{ featuredTestimonial.text }}</p>
+          <!-- <p class="testimonial-text">{{ featuredTestimonial.text }}</p> -->
         </div>
       </div>
 
@@ -89,28 +88,6 @@
             <h4>{{ highlightedTestimonial.clientName }}</h4>
             <p>{{ highlightedTestimonial.profession }}</p>
           </div>
-        </div>
-      </div>
-
-      <!-- Galería de antes y después -->
-      <div
-        class="bento-item before-after"
-        [attr.data-aos]="'fade-up'"
-        [attr.data-aos-delay]="'200'"
-      >
-        <h3 class="section-title">Antes y Después</h3>
-        <div class="before-after-container">
-          <div class="image-comparison">
-            <div class="before-image">
-              <img [src]="beforeAfter.before" alt="Antes" loading="lazy" />
-              <span class="label">Antes</span>
-            </div>
-            <div class="after-image">
-              <img [src]="beforeAfter.after" alt="Después" loading="lazy" />
-              <span class="label">Después</span>
-            </div>
-          </div>
-          <p class="transformation-text">{{ beforeAfter.description }}</p>
         </div>
       </div>
 
@@ -177,6 +154,28 @@
               tag
             }}</span>
           </div>
+        </div>
+      </div>
+
+      <!-- Galería de antes y después -->
+      <div
+        class="bento-item before-after"
+        [attr.data-aos]="'fade-up'"
+        [attr.data-aos-delay]="'200'"
+      >
+        <h3 class="section-title">Antes y Después</h3>
+        <div class="before-after-container">
+          <div class="image-comparison">
+            <div class="before-image">
+              <img [src]="beforeAfter.before" alt="Antes" loading="lazy" />
+              <span class="label">Antes</span>
+            </div>
+            <div class="after-image">
+              <img [src]="beforeAfter.after" alt="Después" loading="lazy" />
+              <span class="label">Después</span>
+            </div>
+          </div>
+          <p class="transformation-text">{{ beforeAfter.description }}</p>
         </div>
       </div>
 

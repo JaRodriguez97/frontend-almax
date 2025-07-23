@@ -46,9 +46,9 @@ export class ServiciosComponent implements OnInit, OnDestroy {
 
   // Testimonio destacado principal
   featuredTestimonial: TestimonialData = {
-    clientName: 'Isabella Torres',
-    location: 'Bucaramanga, Colombia',
-    videoUrl: 'assets/videos/testimonial-isabella-featured.mp4',
+    clientName: 'Daniela',
+    location: 'Medellin, Colombia',
+    videoUrl: '../../../assets/videos/testimonio1.mp4',
     thumbnail: 'assets/images/testimonials/isabella-featured-thumb.jpg',
     clientImage: 'assets/images/clients/isabella-avatar.jpg',
     text: 'ALMAX NAILS transformó completamente mi negocio. En 6 meses mis ingresos se triplicaron y ahora tengo una clientela fija de más de 200 personas. La calidad de los productos es excepcional y mis clientas siempre salen fascinadas.',

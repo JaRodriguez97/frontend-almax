@@ -18,7 +18,11 @@ section {
   position: relative;
   width: 200px;
   height: 200px;
-  background: linear-gradient(90deg, #f00, var(--colorPrincipal));
+  background: linear-gradient(
+    90deg,
+    var(--colorPrincipalOpacity),
+    var(--colorPrincipal)
+  );
   border-radius: 50%;
   cursor: pointer;
 }
@@ -28,7 +32,11 @@ section {
   position: absolute;
   width: 200px;
   height: 200px;
-  background: linear-gradient(90deg, var(--colorPrincipal), #f00);
+  background: linear-gradient(
+    90deg,
+    var(--colorPrincipal),
+    var(--colorPrincipalOpacity)
+  );
   border-radius: 50%;
   filter: blur(30px);
   z-index: -1;
